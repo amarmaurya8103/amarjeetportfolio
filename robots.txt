@@ -8,6 +8,7 @@ Allow: /index.html
 Allow: /styles.css
 Allow: /script.js
 Allow: /Amar%20Resume.pdf
+Allow: /google029b2c970c9d24ca.html
 
 # Crawl-delay for optimal server load
 Crawl-delay: 1
