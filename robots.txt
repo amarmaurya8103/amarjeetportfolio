@@ -1,0 +1,16 @@
+# Robots.txt for Amarjeet Maurya Portfolio
+# Allow all search engine crawlers (Googlebot, Bingbot, Yahoo, DuckDuckGo)
+
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /index.html
+Allow: /styles.css
+Allow: /script.js
+Allow: /Amar%20Resume.pdf
+
+# Crawl-delay for optimal server load
+Crawl-delay: 1
+
+# Sitemap Reference
+Sitemap: https://amarmaurya.me/sitemap.xml

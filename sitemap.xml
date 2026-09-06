@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://amarmaurya.me/</loc>
+    <!-- India Region Priority (hreflang en-IN) -->
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://amarmaurya.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://amarmaurya.me/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://amarmaurya.me/" />
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    
+    <!-- Hero Profile Image -->
+    <image:image>
+      <image:loc>https://amarmaurya.me/assets/amar_profile.png</image:loc>
+      <image:title>Amarjeet Maurya - Mechanical Engineer (SISTec Bhopal, India)</image:title>
+      <image:caption>Official Portfolio of Amarjeet Maurya (Amarjeet SISTec), Mechanical Engineer and B.Tech Graduate from Sagar Group of Institutions (SISTec), Bhopal, Madhya Pradesh, India.</image:caption>
+      <image:geo_location>Bhopal, Madhya Pradesh, India</image:geo_location>
+    </image:image>
+
+    <!-- Go-Kart Engineering Project Image -->
+    <image:image>
+      <image:loc>https://amarmaurya.me/assets/go_kart.jpg</image:loc>
+      <image:title>Single-Seat Go-Kart Spaceframe Design &amp; Fabrication - Amarjeet Maurya (India)</image:title>
+      <image:caption>Mechanical design and fabrication of a single-seat go-kart spaceframe chassis engineered at SISTec Bhopal, India.</image:caption>
+      <image:geo_location>Bhopal, India</image:geo_location>
+    </image:image>
+
+    <!-- Thermoelectric Eco-Refrigerator Image -->
+    <image:image>
+      <image:loc>https://amarmaurya.me/assets/thermoelectric.jpg</image:loc>
+      <image:title>Solid-State Thermoelectric Refrigerator Peltier Effect Project - Amarjeet Maurya</image:title>
+      <image:caption>CFC-free green refrigeration system utilizing Peltier thermoelectric modules designed in India.</image:caption>
+      <image:geo_location>Bhopal, India</image:geo_location>
+    </image:image>
+
+    <!-- HVAC & Hydraulics CRISP Bhopal Image -->
+    <image:image>
+      <image:loc>https://amarmaurya.me/assets/hvac_hydraulics.jpg</image:loc>
+      <image:title>Industrial HVAC Airflow &amp; Hydraulic Systems Training (CRISP Bhopal, India)</image:title>
+      <image:caption>Advanced industrial training in HVAC chiller plants and hydraulic valve control systems at CRISP Bhopal, Madhya Pradesh, India.</image:caption>
+      <image:geo_location>Bhopal, Madhya Pradesh, India</image:geo_location>
+    </image:image>
+
+    <!-- SGTPS Thermal Power Station Industrial Internship Image -->
+    <image:image>
+      <image:loc>https://amarmaurya.me/assets/02.png</image:loc>
+      <image:title>SGTPS MPPGCL Supercritical Boiler Bank Coils Fabrication (India)</image:title>
+      <image:caption>Production engineering internship in heavy boiler fabrication at Bend Joints Pvt. Ltd. for Sanjay Gandhi Thermal Power Station (SGTPS, MPPGCL), India.</image:caption>
+      <image:geo_location>Birsinghpur, Madhya Pradesh, India</image:geo_location>
+    </image:image>
+  </url>
+</urlset>
