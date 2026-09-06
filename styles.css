@@ -5191,6 +5191,78 @@ body.nav-menu-open {
     top: 1rem;
     right: 1rem;
   }
+
+  /* ========================================================
+     Mobile 60fps Smooth Scroll & GPU Performance Engine
+     ======================================================== */
+  
+  /* 1. Hide decorative sparkle stars layer on mobile */
+  #twinkle-stars-layer {
+    display: none !important;
+  }
+
+  /* 2. Lighten heavy backdrop-filters on mobile cards to eliminate GPU shader jank */
+  .about-feature-card,
+  .exp-hero-bento-card,
+  .exp-pillar-card,
+  .edu-timeline-glass-card,
+  .cert-showcase-glass-card,
+  .cert-tile,
+  .contact-hub-glass-card,
+  .contact-form-glass-card,
+  .skill-card-showcase,
+  .split-project-card,
+  .stat-box,
+  .about-quote-box {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 14px rgba(242, 109, 125, 0.06) !important;
+  }
+
+  /* 3. Disable heavy skewed pseudo-element specular light waves on mobile */
+  .about-feature-card::before,
+  .exp-pillar-card::before,
+  .cert-tile::before,
+  .contact-hub-glass-card::before,
+  .contact-form-glass-card::before {
+    display: none !important;
+  }
+
+  /* 4. Disable continuous ambient float animations on mobile to stop repaints */
+  .hero-glass-badge {
+    animation: none !important;
+  }
+
+  .pulse-dot {
+    animation: none !important;
+  }
+
+  /* 5. Snappy, GPU-friendly scroll reveals on mobile */
+  .scroll-reveal-item,
+  .scroll-reveal-left,
+  .scroll-reveal-right,
+  .scroll-reveal-scale {
+    will-change: auto !important;
+    transform: translateY(14px) !important;
+    transition-duration: 0.35s !important;
+  }
+
+  .scroll-reveal-item.revealed,
+  .scroll-reveal-left.revealed,
+  .scroll-reveal-right.revealed,
+  .scroll-reveal-scale.revealed {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* 6. Smooth native touch scrolling */
+  html, body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 /* Compact Phones (max-width: 540px) */
@@ -5643,61 +5715,66 @@ body.nav-menu-open {
   top: 0;
   left: 0;
   height: 3.5px;
-  width: 0%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
   background: linear-gradient(90deg, #E54353 0%, #F43F5E 50%, #FB7185 100%);
-  box-shadow: 0 0 12px rgba(229, 67, 83, 0.85), 0 0 24px rgba(244, 63, 94, 0.55);
+  box-shadow: 0 0 10px rgba(229, 67, 83, 0.7), 0 0 20px rgba(244, 63, 94, 0.4);
   z-index: 10000;
-  transition: width 0.08s cubic-bezier(0.1, 0.8, 0.2, 1);
   pointer-events: none;
 }
 
 /* Universal Scroll Reveal Classes */
 .scroll-reveal-item {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-reveal-item.revealed {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 .scroll-reveal-left {
   opacity: 0;
-  transform: translateX(-36px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-28px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-reveal-left.revealed {
   opacity: 1;
   transform: translateX(0);
+  will-change: auto;
 }
 
 .scroll-reveal-right {
   opacity: 0;
-  transform: translateX(36px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(28px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-reveal-right.revealed {
   opacity: 1;
   transform: translateX(0);
+  will-change: auto;
 }
 
 .scroll-reveal-scale {
   opacity: 0;
-  transform: scale(0.92) translateY(24px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.94) translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-reveal-scale.revealed {
   opacity: 1;
   transform: scale(1) translateY(0);
+  will-change: auto;
 }
 
 /* Stagger Utilities */

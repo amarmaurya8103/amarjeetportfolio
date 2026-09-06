@@ -6,9 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) {
     lucide.createIcons();
   }
-  initScrollNavbar();
+  initUnifiedScrollEngine();
   initMobileNav();
-  initScrollProgressBar();
   initScrollAnimations();
   initCardTilt();
   initProjectsCarousel();
@@ -20,21 +19,88 @@ document.addEventListener('DOMContentLoaded', () => {
   initTwinkleStars();
 });
 
-/* Scroll Navbar Morphing */
-function initScrollNavbar() {
+/* High Performance Unified RAF Scroll Engine (Zero Layout Thrashing & 60/120fps Smooth) */
+let updateActiveNavTrack = null;
+
+function initUnifiedScrollEngine() {
   const navbar = document.querySelector('.navbar');
-  if (!navbar) return;
+  const progressBar = document.getElementById('scroll-progress');
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navLinks = document.querySelectorAll('.nav-links .nav-link');
+
+  let isTicking = false;
+  let cachedSections = [];
+
+  // Cache section coordinates once to eliminate forced synchronous reflows on scroll
+  function cachePositions() {
+    cachedSections = Array.from(sections).map(sec => ({
+      id: sec.getAttribute('id'),
+      top: sec.offsetTop,
+      bottom: sec.offsetTop + sec.offsetHeight
+    }));
+  }
+
+  cachePositions();
+  window.addEventListener('resize', cachePositions, { passive: true });
+  window.addEventListener('orientationchange', cachePositions, { passive: true });
+
+  function updateScroll() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+    // 1. Morphing Navbar
+    if (navbar) {
+      if (scrollY > 30) {
+        if (!navbar.classList.contains('scrolled')) navbar.classList.add('scrolled');
+      } else {
+        if (navbar.classList.contains('scrolled')) navbar.classList.remove('scrolled');
+      }
+    }
+
+    // 2. Hardware Accelerated Reading Progress Bar via scaleX
+    if (progressBar) {
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      if (docHeight > 0) {
+        const progress = Math.min(1, Math.max(0, scrollY / docHeight));
+        progressBar.style.transform = `scaleX(${progress})`;
+      }
+    }
+
+    // 3. Active Nav Tracker (Zero DOM offset queries during scroll)
+    if (cachedSections.length > 0 && navLinks.length > 0) {
+      const scrollPos = scrollY + 160;
+      let currentId = '';
+      for (let i = 0; i < cachedSections.length; i++) {
+        const sec = cachedSections[i];
+        if (scrollPos >= sec.top && scrollPos < sec.bottom) {
+          currentId = sec.id;
+          break;
+        }
+      }
+
+      if (currentId) {
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === `#${currentId}`) {
+            if (!link.classList.contains('active')) link.classList.add('active');
+          } else {
+            if (link.classList.contains('active')) link.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    isTicking = false;
+  }
 
   function onScroll() {
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+    if (!isTicking) {
+      requestAnimationFrame(updateScroll);
+      isTicking = true;
     }
   }
 
-  window.addEventListener('scroll', onScroll);
-  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  updateScroll();
 }
 
 /* Mobile Hamburger Navigation Menu Engine */
@@ -540,6 +606,9 @@ function initContactForm() {
 
 /* Interactive Twinkle Stars Shimmer Engine */
 function initTwinkleStars() {
+  // Disable star drift & intervals on mobile to eliminate animation lag
+  if (window.innerWidth <= 768) return;
+
   const hero = document.getElementById('hero');
   const layer = document.getElementById('twinkle-stars-layer');
   if (!hero || !layer) return;
@@ -583,27 +652,7 @@ function initTwinkleStars() {
 }
 
 /* ==========================================================================
-   Smooth Scroll Reading Progress Bar
-   ========================================================================== */
-function initScrollProgressBar() {
-  const progressBar = document.getElementById('scroll-progress');
-  if (!progressBar) return;
-
-  function updateProgress() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    if (docHeight > 0) {
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      progressBar.style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
-    }
-  }
-
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-}
-
-/* ==========================================================================
-   Universal Scroll Reveal Engine & Active Nav Tracking
+   Universal Scroll Reveal Engine (Positive RootMargin & Hardware Offloading)
    ========================================================================== */
 function initScrollAnimations() {
   // Elements with slide up reveal
@@ -670,11 +719,11 @@ function initScrollAnimations() {
     });
   });
 
-  // Intersection Observer for performance
+  // Intersection Observer: positive bottom margin ensures zero pop-in delay on mobile
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -60px 0px',
-    threshold: 0.1
+    rootMargin: '0px 0px 40px 0px',
+    threshold: 0.05
   };
 
   const revealObserver = new IntersectionObserver((entries, obs) => {
@@ -691,51 +740,22 @@ function initScrollAnimations() {
   );
 
   targets.forEach(target => {
-    // If element is already visible at load (e.g. hero stats), reveal instantly
     const rect = target.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
       target.classList.add('revealed');
     } else {
       revealObserver.observe(target);
     }
   });
-
-  // Active Navbar link tracker
-  const sections = document.querySelectorAll('section[id], header[id]');
-  const navLinks = document.querySelectorAll('.nav-links .nav-link');
-
-  function updateActiveNavLink() {
-    let currentId = '';
-    const scrollPos = window.scrollY + 180;
-
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        currentId = section.getAttribute('id');
-      }
-    });
-
-    if (currentId) {
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === `#${currentId}`) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
-      });
-    }
-  }
-
-  window.addEventListener('scroll', updateActiveNavLink, { passive: true });
-  updateActiveNavLink();
 }
 
 /* ==========================================================================
-   Smooth 3D Card Hover Perspective Physics
+   Smooth 3D Card Hover Perspective Physics (Desktop Mouse Only)
    ========================================================================== */
 function initCardTilt() {
+  // Skip on touch screens and mobile devices to guarantee 60fps scrolling
+  if (window.matchMedia('(hover: none), (max-width: 768px)').matches) return;
+
   const cards = document.querySelectorAll('.about-feature-card, .exp-pillar-card, .cert-tile');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
