@@ -50,8 +50,8 @@ function initMobileNav() {
     document.body.classList.toggle('nav-menu-open', isOpen);
   });
 
-  // Close when clicking any nav link
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
+  // Close when clicking any nav link or drawer download button
+  navLinks.querySelectorAll('.nav-link, .btn-drawer-download').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('mobile-open');
       toggleBtn.classList.remove('active');
