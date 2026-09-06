@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
   initScrollNavbar();
+  initMobileNav();
   initScrollProgressBar();
   initScrollAnimations();
   initCardTilt();
@@ -34,6 +35,47 @@ function initScrollNavbar() {
 
   window.addEventListener('scroll', onScroll);
   onScroll();
+}
+
+/* Mobile Hamburger Navigation Menu Engine */
+function initMobileNav() {
+  const toggleBtn = document.getElementById('mobile-nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (!toggleBtn || !navLinks) return;
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('mobile-open');
+    toggleBtn.classList.toggle('active', isOpen);
+    document.body.classList.toggle('nav-menu-open', isOpen);
+  });
+
+  // Close when clicking any nav link
+  navLinks.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      toggleBtn.classList.remove('active');
+      document.body.classList.remove('nav-menu-open');
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('mobile-open') && !navLinks.contains(e.target) && !toggleBtn.contains(e.target)) {
+      navLinks.classList.remove('mobile-open');
+      toggleBtn.classList.remove('active');
+      document.body.classList.remove('nav-menu-open');
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      toggleBtn.classList.remove('active');
+      document.body.classList.remove('nav-menu-open');
+    }
+  });
 }
 
 /* Projects Expanding Flex Accordion Engine (All 3 visible, 1 takes 50%, 2 take 25%, auto-animates) */
