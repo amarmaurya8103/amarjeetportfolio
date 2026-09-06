@@ -4478,10 +4478,48 @@ body.nav-menu-open {
     bottom: 15px;
   }
 
-  /* About Micro Chips Stack */
+  /* About Micro Chips: 3 in 1 Single Line on Mobile */
   .about-micro-chips {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .micro-chip {
+    padding: 0.7rem 0.4rem;
+    border-radius: 16px;
+    gap: 0.45rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .micro-chip-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+
+  .micro-chip-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .micro-chip-info {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .chip-title-bold {
+    font-size: clamp(0.72rem, 2.7vw, 0.88rem);
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  .chip-sub-desc {
+    font-size: clamp(0.55rem, 2vw, 0.66rem);
+    line-height: 1.2;
+    margin-top: 2px;
   }
 
   .about-features-bento {
