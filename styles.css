@@ -4442,7 +4442,10 @@ body.nav-menu-open {
   }
 
   .hero-name {
-    font-size: clamp(2.3rem, 9.5vw, 3.2rem);
+    font-size: clamp(3rem, 11vw, 4.2rem);
+    line-height: 1.04;
+    letter-spacing: -1.8px;
+    margin-bottom: 0.85rem;
   }
 
   .hero-right-visual {
@@ -4697,7 +4700,15 @@ body.nav-menu-open {
   }
 
   .hero-name {
-    font-size: clamp(2.1rem, 9.5vw, 2.65rem);
+    font-size: clamp(2.85rem, 12.8vw, 3.65rem);
+    line-height: 1.03;
+    letter-spacing: -1.5px;
+    margin-bottom: 0.8rem;
+  }
+
+  .name-swoosh {
+    bottom: -6px;
+    height: 11px;
   }
 
   .hero-role-title {
