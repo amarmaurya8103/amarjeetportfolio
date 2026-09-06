@@ -5031,10 +5031,30 @@ body.nav-menu-open {
     gap: 1rem;
   }
 
-  /* Specs Grid 1 Column */
+  /* Specs Grid: 2 Columns (Exact 2 Lines) */
   .split-specs-grid {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.45rem;
+  }
+
+  .spec-item {
+    font-size: clamp(0.68rem, 2.7vw, 0.76rem);
+    padding: 0.38rem 0.45rem;
+    border-radius: 10px;
+    background: rgba(242, 109, 125, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .spec-item i, .spec-item svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
   }
 
   .split-card-title {
