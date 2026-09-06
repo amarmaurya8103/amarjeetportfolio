@@ -2498,18 +2498,27 @@ body.nav-menu-open {
     display: none !important;
   }
 
+  .split-project-card.active-card .split-card-bg-wrap,
   .split-card-bg-wrap {
     position: relative;
     width: 100%;
-    height: 210px;
+    height: 220px;
     border-radius: 22px 22px 0 0;
     overflow: hidden;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
   }
 
   .split-card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center !important;
+    filter: none !important;
+  }
+
+  .split-img-circle-btn {
+    display: none !important;
   }
 
   .split-card-left {
