@@ -164,11 +164,39 @@ function initProjectsCarousel() {
     });
   });
 
-  // Pause on hover, resume on mouseleave
+  // Pause on hover, resume on mouseleave + Mobile Touch Swipe
   const stage = document.querySelector('.split-projects-stage');
   if (stage) {
     stage.addEventListener('mouseenter', stopAutoCycle);
     stage.addEventListener('mouseleave', startAutoCycle);
+
+    // Mobile Touch Swipe Navigation (Swipe left for Next, Swipe right for Prev)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    stage.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+      stopAutoCycle();
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      const diffX = touchStartX - touchEndX;
+      const diffY = touchStartY - touchEndY;
+
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+        if (diffX > 0) {
+          nextSlide(); // Swiped left -> Next project
+        } else {
+          prevSlide(); // Swiped right -> Previous project
+        }
+      }
+      startAutoCycle();
+    }, { passive: true });
   }
 
   // Start auto play
