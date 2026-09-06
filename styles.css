@@ -4873,20 +4873,181 @@ body.nav-menu-open {
     gap: 0.35rem;
   }
 
-  /* Education Responsive */
+  /* Education & Certifications Responsive Compact */
   .edu-single-headline {
-    font-size: clamp(1.75rem, 6vw, 2.2rem);
+    font-size: clamp(1.65rem, 6vw, 2.1rem);
   }
 
   .edu-timeline-glass-card,
   .cert-showcase-glass-card {
-    padding: 1.3rem 1.1rem;
-    border-radius: 20px;
+    padding: 1rem 0.9rem;
+    border-radius: 18px;
   }
 
+  .edu-card-header {
+    padding-bottom: 0.65rem;
+    margin-bottom: 0.75rem;
+    gap: 0.6rem;
+  }
+
+  .edu-card-header-left {
+    gap: 0.6rem;
+  }
+
+  .edu-header-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+  }
+
+  .edu-header-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .edu-card-title {
+    font-size: 0.96rem;
+  }
+
+  .edu-card-subtitle {
+    font-size: 0.68rem;
+  }
+
+  .edu-count-badge {
+    font-size: 0.64rem;
+    padding: 0.18rem 0.55rem;
+  }
+
+  /* Academic Timeline Compact */
+  .edu-timeline-flow {
+    gap: 0.55rem;
+  }
+
+  .edu-timeline-item {
+    gap: 0.55rem;
+  }
+
+  .timeline-indicator {
+    width: 22px;
+  }
+
+  .timeline-node {
+    width: 22px;
+    height: 22px;
+    font-size: 0.62rem;
+  }
+
+  .timeline-node svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .timeline-body {
+    padding: 0.55rem 0.72rem;
+    border-radius: 12px;
+  }
+
+  .timeline-top-row {
+    margin-bottom: 0.15rem;
+    gap: 0.35rem;
+  }
+
+  .edu-level-tag {
+    font-size: 0.62rem;
+    padding: 0.12rem 0.45rem;
+  }
+
+  .edu-score-pill {
+    font-size: 0.66rem;
+    padding: 0.12rem 0.45rem;
+  }
+
+  .edu-degree-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.08rem;
+    line-height: 1.25;
+  }
+
+  .edu-inst-name {
+    font-size: 0.71rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+  }
+
+  .edu-meta-foot {
+    font-size: 0.65rem;
+    padding-top: 0.25rem;
+  }
+
+  .edu-period svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Certifications Showcase Compact */
   .cert-tiles-grid {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.55rem;
+  }
+
+  .cert-tile {
+    padding: 0.6rem 0.75rem;
+    border-radius: 13px;
+  }
+
+  .cert-tile-top {
+    margin-bottom: 0.25rem;
+    gap: 0.4rem;
+  }
+
+  .cert-provider-chip {
+    font-size: 0.62rem;
+    padding: 0.12rem 0.42rem;
+    border-radius: 6px;
+  }
+
+  .cert-provider-chip svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .cert-verified-pill {
+    font-size: 0.62rem;
+    gap: 0.2rem;
+  }
+
+  .cert-verified-pill svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .cert-tile-title {
+    font-size: 0.84rem;
+    line-height: 1.24;
+    margin-bottom: 0.18rem;
+  }
+
+  .cert-tile-desc {
+    font-size: 0.71rem;
+    line-height: 1.32;
+    margin-bottom: 0.35rem;
+  }
+
+  .cert-tile-footer {
+    padding-top: 0.3rem;
+  }
+
+  .cert-score-label {
+    font-size: 0.56rem;
+  }
+
+  .cert-score-num {
+    font-size: 0.74rem;
+  }
+
+  .cert-status-tag {
+    font-size: 0.62rem;
+    padding: 0.12rem 0.45rem;
   }
 
   /* Contact Responsive */
@@ -5234,17 +5395,62 @@ body.nav-menu-open {
     font-size: 0.64rem;
   }
 
-  /* Education Timeline on Small Phones */
+  /* Education Timeline & Certs on Small Phones */
+  .edu-timeline-glass-card,
+  .cert-showcase-glass-card {
+    padding: 0.85rem 0.75rem;
+    border-radius: 15px;
+  }
+
   .timeline-top-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
+
+  .edu-level-tag {
+    font-size: 0.58rem;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .edu-score-pill {
+    font-size: 0.62rem;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .edu-degree-title {
+    font-size: 0.82rem;
+  }
+
+  .edu-inst-name {
+    font-size: 0.68rem;
+    margin-bottom: 0.2rem;
   }
 
   .edu-meta-foot {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     gap: 0.25rem;
+    flex-wrap: wrap;
+    font-size: 0.62rem;
+  }
+
+  .cert-tile {
+    padding: 0.55rem 0.68rem;
+    border-radius: 12px;
+  }
+
+  .cert-tile-title {
+    font-size: 0.80rem;
+  }
+
+  .cert-tile-desc {
+    font-size: 0.68rem;
+    line-height: 1.28;
+    margin-bottom: 0.25rem;
   }
 
   /* Contact Hub on Small Phones */
