@@ -4375,7 +4375,8 @@ body.nav-menu-open {
     width: 100%;
     max-width: 380px;
     height: auto;
-    margin: 0 auto;
+    min-height: auto;
+    margin: 1.5rem auto 0 auto;
   }
 
   .hero-glass-card-backdrop {
@@ -4449,13 +4450,17 @@ body.nav-menu-open {
   }
 
   .hero-right-visual {
-    max-width: 330px;
-    height: 380px;
+    width: 100%;
+    max-width: 320px;
+    height: 370px;
+    min-height: auto;
+    margin: 1.2rem auto 0 auto;
+    position: relative;
   }
 
   .hero-glass-card-backdrop {
-    max-width: 290px;
-    height: 340px;
+    width: 275px;
+    height: 335px;
     border-radius: 32px;
   }
 
@@ -4464,13 +4469,13 @@ body.nav-menu-open {
   }
 
   .badge-top-left {
-    left: -5px;
-    top: 5%;
+    left: 4px;
+    top: 15px;
   }
 
   .badge-bottom-right {
-    right: -5px;
-    bottom: 5%;
+    right: 4px;
+    bottom: 15px;
   }
 
   /* About Micro Chips Stack */
@@ -4747,13 +4752,17 @@ body.nav-menu-open {
   }
 
   .hero-right-visual {
-    max-width: 280px;
-    height: 330px;
+    width: 100%;
+    max-width: 295px;
+    height: 355px;
+    min-height: auto;
+    margin: 1rem auto 0.5rem auto;
+    position: relative;
   }
 
   .hero-glass-card-backdrop {
-    max-width: 250px;
-    height: 300px;
+    width: 250px;
+    height: 315px;
     border-radius: 26px;
   }
 
@@ -4762,28 +4771,33 @@ body.nav-menu-open {
   }
 
   .hero-glass-badge {
-    padding: 0.4rem 0.75rem;
+    padding: 0.42rem 0.8rem;
     border-radius: 14px;
+    box-shadow: 0 12px 28px rgba(229, 67, 83, 0.18);
   }
 
   .badge-top-left {
-    top: 2%;
-    left: -8px;
-    transform: scale(0.85);
+    top: 10px;
+    left: 4px;
+    transform: none;
+    animation: floatChip1 5s ease-in-out infinite alternate;
   }
 
   .badge-bottom-right {
-    bottom: 2%;
-    right: -8px;
-    transform: scale(0.85);
+    bottom: 10px;
+    right: 4px;
+    transform: none;
+    animation: floatChip2 6s ease-in-out infinite alternate;
   }
 
   .badge-main-text {
     font-size: 0.82rem;
+    font-weight: 800;
   }
 
   .badge-sub-text {
     font-size: 0.64rem;
+    font-weight: 700;
   }
 
   .badge-icon-red {
